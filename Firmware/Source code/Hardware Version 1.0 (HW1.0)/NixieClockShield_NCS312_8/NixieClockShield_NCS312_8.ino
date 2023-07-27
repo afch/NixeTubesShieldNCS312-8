@@ -1002,8 +1002,21 @@ void doTest()
 
 void doDotBlink()
 {
-  if (second()%2 == 0) dotPattern = B11000000;
-    else dotPattern = B00000000;
+  static uint8_t prevSec=0;
+  static unsigned long lastTimeBlink = millis();
+  //static bool dotState = 0;
+  if (prevSec != second())
+  {
+    lastTimeBlink = millis();
+    dotPattern = B00000000;
+    prevSec = second();
+  }
+  if ((millis() - lastTimeBlink) > 500)
+  {
+      dotPattern = B11000000;
+  }
+  /*if (second()%2 == 0) dotPattern = B11000000;
+    else dotPattern = B00000000;*/
   /*static int8_t secondOn = 0;
   if (abs(second() - secondOn) >= 2)
   {
