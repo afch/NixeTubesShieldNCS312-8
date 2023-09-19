@@ -1008,12 +1008,12 @@ void doDotBlink()
   if (prevSec != second())
   {
     lastTimeBlink = millis();
-    dotPattern = B00000000;
+    dotPattern = B11000000;
     prevSec = second();
   }
   if ((millis() - lastTimeBlink) > 500)
   {
-      dotPattern = B11000000;
+      dotPattern = B00000000;
   }
   /*if (second()%2 == 0) dotPattern = B11000000;
     else dotPattern = B00000000;*/
